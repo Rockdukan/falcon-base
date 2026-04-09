@@ -1,0 +1,31 @@
+openapi: 3.0.3
+info:
+  title: Falcon Base API
+  version: "0.1.0"
+  description: Минимальный шаблон Falcon-приложения с health-check.
+
+servers:
+  - url: /
+    description: Текущий хост (например http://127.0.0.1:8000)
+
+paths:
+  /api/v1/health:
+    get:
+      summary: Health-check
+      operationId: health
+      responses:
+        "200":
+          description: Сервис доступен
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok

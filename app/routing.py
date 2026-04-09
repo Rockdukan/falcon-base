@@ -1,7 +1,7 @@
 import falcon
 
 from app.resources.health import HealthResource
-from app.resources.user import UsersResource
+from app.resources.openapi_docs import register_openapi_routes
 
 
 def register_routes(app: falcon.App) -> None:
@@ -12,4 +12,5 @@ def register_routes(app: falcon.App) -> None:
         app: Экземпляр Falcon-приложения.
     """
     app.add_route("/api/v1/health", HealthResource())
-    app.add_route("/api/v1/users", UsersResource())
+    register_openapi_routes(app)
+

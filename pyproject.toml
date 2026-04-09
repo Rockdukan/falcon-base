@@ -3,7 +3,10 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
-packages = ["app", "config"]
+packages = ["app", "app.openapi", "config"]
+
+[tool.setuptools.package-data]
+app = ["openapi/openapi.yaml"]
 
 [project]
 name = "falcon-base"
@@ -11,18 +14,18 @@ version = "0.1.0"
 description = "Falcon WSGI application skeleton"
 requires-python = ">=3.11"
 dependencies = [
-    "email-validator>=2.2.0",
-    "falcon>=4.0.0",
-    "pydantic>=2.10.0",
-    "python-dotenv>=1.0.0",
+    "falcon==4.2.0",
+    "gunicorn==25.3.0",
+    "pydantic==2.12.5",
+    "pytest==9.0.3",
+    "pyyaml==6.0.3",
+    "python-dotenv==1.2.2",
+    "ruff==0.15.9",
+    "webtest==3.0.7",
 ]
 
-[project.optional-dependencies]
-dev = [
-    "pytest>=8.3.0",
-    "ruff>=0.8.0",
-    "webtest>=3.0.0",
-]
+[tool.pytest.ini_options]
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 120
